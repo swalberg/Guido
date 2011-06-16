@@ -1,0 +1,36 @@
+<% @clients.each do |id, client| %>
+  <div class="client">
+    <div class="info"><%= client[:details][:org] %> (<%= client[:details][:name] %>)</div>
+    <div class="thirty">&lt; 30: <%= "$%0.2f" % client[:thirty] %></div>
+    <div class="sixty">&lt; 60: <%= "$%0.2f" % client[:sixty] %></div>
+    <div class="other">&gt; 60: <%= "$%0.2f" % client[:other] %></div>
+    <div class="spacer"></div>
+    <div class="details">
+      <ul>
+        <% client[:invoices].each do |invoice| %>
+          <li>Invoice <%= invoice.invoice_id %> on <%= invoice.date %> for <%= "$%0.2f" % invoice.amount %> 
+          <%= link_to "resend", {:action => "resend", :id => invoice.invoice_id}, :remote => true  %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="spacer"></div>
+    <%= link_to "call", {:controller => "phone", :action => "call", :client => id }, :remote => true %>
+    <%= history_js(id) %>
+    <div class="hide" id="contact_<%= id %>">
+      <ul>
+        <% client[:object].contacts.each do |contact| %>
+          <li><%= contact.method %> on <%= contact.created_at.strftime("%a %b %e %H:%M") %>: <%= contact.disposition %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="hide new_contact" id="new_contact_<%= id %>">
+      <%= form_for client[:object].contacts.build(:method => "PHONE"), :url => client_contacts_path(client[:object], client[:object].contacts.build), :remote => true do |c| %>
+        <%= c.hidden_field :method %>
+        <%= c.text_area :disposition %>
+        <%= c.submit %><%= cancel_js id %>
+      <% end %>
+    </div>
+    <div class="spacer"></div>
+  </div>
+<% end %>

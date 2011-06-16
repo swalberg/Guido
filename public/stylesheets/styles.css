@@ -1,0 +1,48 @@
+.client {
+  border-bottom: 1px solid #000;
+  margin-bottom: 15px;
+
+}
+
+.client .info {
+}
+
+.client .thirty {
+  float: left;
+  background: #0F0;
+  margin: 0 30px 0 30px
+}
+
+.client .sixty {
+  float: left;
+  background: #FF0;
+  margin: 0 30px 0 30px
+}
+
+.client .other {
+  float: left;
+  background: #F00;
+  margin: 0 30px 0 30px
+}
+
+.spacer { clear: both; }
+
+.hide { display:none; }
+
+#wrapper { }
+#header { clear:both; border-bottom: 1px solid black; }
+#content { }
+
+ul li { list-style: none; }
+
+.new_contact {
+  float: left;
+}
+
+.new_contact textarea {
+  width: 600px;
+  height: 120px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+}

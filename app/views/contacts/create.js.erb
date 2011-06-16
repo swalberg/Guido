@@ -1,0 +1,2 @@
+$("#contact_<%=@contact.client.freshbooks_id%> ul").append("<li><%= @contact.method %> on <%= @contact.created_at %>: <%= @contact.disposition %></li>");
+$("#new_contact_<%= @contact.client.freshbooks_id %>").hide();
